@@ -1,0 +1,42 @@
+#app-container { width: 500px;}
+
+/* Form Region */
+.sub-fields { margin-left: 3em; }
+
+/* Preview Region */
+#elr_preview_stage {
+    padding: .3em;
+}
+
+
+#elr_preview_stage {
+    width: 100%;
+}
+
+#elr_preview_stage.two {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+#elr_preview_stage [class^="prev-row-"]:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#elr_preview_stage span{margin-right: .4em; float: left;}
+#elr_preview_stage span.heading {font-weight: bold; float: none;}
+#elr_preview_stage div.col {width: 20%; float: left; overflow: hidden; text-overflow: ellipsis; text-align: center;}
+#elr_preview_stage div.col:first-of-type {text-align: left;}
+
+
+#elr_preview_stage span.item, #elr_preview_stage span.items{margin: auto .2em; display: inline; float:none;}
+#elr_preview_stage span.item:after {content:"\000A"; white-space: pre;}
+
+/* Random */
+#app-container .show {display: block;}
+#app-container .show.span {display: inline;}
+#app-container .hide {display: none;}
