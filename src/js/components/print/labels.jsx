@@ -1,48 +1,46 @@
 import React from "react";
 import _ from "lodash";
 
-import Label from './label.jsx'
-
+import BaseRow from "../baseRow.jsx";
+import PGRow from "../pgRow.jsx";
+import VGRow from "../vgRow.jsx";
 import NicRow from "../nicRow.jsx";
+import FlavorRows from "../flavorRows.jsx";
 
 
 //@TODO: build up a cart and render labels for multiple labels
 
 export default class extends React.Component {
+    showOrHide(match) {
+        //eventually filter these out of the obj
+        return _.includes(this.props.selections.selectedFields, match) ? 'show' : 'hide';
+    }
+
     render() {
-        let labelCount = this.props.count || 1,
-            labelBoxes = {};
+        let labelCount = this.props.count || 3,
+            labelBoxes = [];
+
 
         for (let i = 1; i <= labelCount; i++) {
-                labelBoxes[i] = {};
             if (_.has(this.props, 'selections.selectedFields') && _.has(this.props, 'available')) {
-                // console.log('props.selections.selectedFs: ', this.props.selections.selectedFields);
-                _.each(this.props.selections.selectedFields, (field, idx)=> {
-                    const selName = field + 'Selection';
-                    labelBoxes[i][field] = [];
-
-                    if (_.isObject(this.props.selections[selName])) {
-                        _.each(this.props.selections[selName], (item, idx)=> {
-                            // console.log('field selected: ', r);
-                            // console.log('each selected: ', dpName);
-                            // console.log('value from available: ',dpName,  this.props.available[r][dpName]);
-                            labelBoxes[i][field].push(
-                                {field, item, values: this.props.available[field][item]}
-                            );
-                        });
-                    } else {
-                        labelBoxes[i][field].push(
-                            {field, item: field, values: this.props.available[field]}
-                        );
-                    }
-                });
+                labelBoxes.push(
+                    <div className="label-wrapper" key={i + 'label'}>
+                        <div className={'meta prev-title ' + this.showOrHide('title')}>{this.props.available.title}</div>
+                        <div className={'meta prev-date ' + this.showOrHide('date')}>{this.props.available.date}</div>
+                        <div className={'meta prev-user ' +  this.showOrHide('user')}>{this.props.available.user}</div>
+                        <NicRow nic={this.props.available.nic} show={this.showOrHide('nic')} selections={this.props.selections.nicSelection}/>
+                        <BaseRow base={this.props.available.base} show={this.showOrHide('base')} selections={this.props.selections.baseSelection}/>
+                        <PGRow pg={this.props.available.pg} show={this.showOrHide('pg')} selections={this.props.selections.pgSelection}/>
+                        <VGRow vg={this.props.available.vg} show={this.showOrHide('vg')} selections={this.props.selections.vgSelection}/>
+                        <FlavorRows flavors={this.props.available.flavors} show={this.showOrHide('flavors')} selections={this.props.selections.flavorSelection}/>
+                    </div>
+                );
             };
         };
 
         return (
             <div id="elr_labels" className={'selected-template'}>
-                {console.log('sending this to Label', labelBoxes)}
-                <Label fields={labelBoxes}/>
+                {labelBoxes}
             </div>
         );
     }

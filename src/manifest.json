@@ -22,7 +22,7 @@
     "tabs"
   ],
   "web_accessible_resources": [ "js/*", "css/*", "images/*" ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'; script-src 'self' https://www.google-analytics.com; object-src 'self'",
   "externally_connectable": {
     "matches": ["*://e-liquid-recipes.com/recipe/*"]
   },

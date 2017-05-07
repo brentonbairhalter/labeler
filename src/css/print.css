@@ -25,3 +25,35 @@ body {
     font-weight: bold;
     margin-right: .6em
 }
+
+
+/* from preview */
+.label-wrapper [class^="prev-row-"]:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.label-wrapper span{margin-right: .4em; float: left;}
+.label-wrapper span.heading {font-weight: bold; float: none;}
+.label-wrapper div.col {width: 20%; float: left; overflow: hidden; text-overflow: ellipsis; text-align: center;}
+.label-wrapper div.col:first-of-type {text-align: left;}
+
+
+.label-wrapper span.item, #elr_preview_stage span.items{margin: auto .2em; display: inline; float:none;}
+.label-wrapper span.item:after {content:"\000A"; white-space: pre;}
+
+/* Random */
+.label-wrapper .show {display: inline-block;}
+.label-wrapper .show.span {display: inline;}
+.label-wrapper .hide {display: none;}
+.label-wrapper .meta {
+    border-right: 1px solid black;
+    padding: 0 .5em;
+}
+.label-wrapper .meta:first-of-type {
+    padding-left: 0;
+}
+.label-wrapper .meta.prev-user {
+    border-right: 0;
+}

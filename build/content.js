@@ -48,7 +48,7 @@ function getRecipeData() {
 
     return {
         user: document.getElementById('byuser').getElementsByTagName('a')[0].innerHTML,
-        title: document.getElementById('rname').innerHTML,
+        title: document.getElementById('rname').innerHTML.replace(/&nbsp;/g, ''),
         date: getGenDate(),
         nic: {
             label: 'Nicotine',
