@@ -24,7 +24,7 @@ export default class extends React.Component {
             let labelCount = this.props.selections.numberSelection;
             for (let i = 1; i <= labelCount; i++) {
                 labelBoxes.push(
-                    <div className="label-wrapper" key={i + 'label'}>
+                    <div className={'label-wrapper template-' + this.props.selections.templateSelection} key={i + 'label'}>
                         <div className={'meta prev-title ' + this.showOrHide('title')}>{this.props.available.title}</div>
                         <div className={'meta prev-date ' + this.showOrHide('date')}>{this.props.available.date}</div>
                         <div className={'meta prev-user ' +  this.showOrHide('user')}>{this.props.available.user}</div>

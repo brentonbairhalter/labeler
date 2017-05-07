@@ -3,9 +3,11 @@ import { render } from "react-dom";
 import _ from "lodash";
 
 import CheckBoxOrRadioGroup from "./checkBoxOrRadioGroup.jsx";
-import RaisedButton from 'material-ui/RaisedButton';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+import RaisedButton from 'material-ui/RaisedButton';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 
 // Preview Region Components
@@ -59,8 +61,7 @@ export default class extends React.Component {
     componentDidMount() {
         //@TODO: grab these from options prefs to default
         this.setState({
-            templateOptions: ['one', 'two', 'three'],
-            templateSelection: ['one'],
+            templateSelection: [1],
             numberOptions: ['1', '3', '5', '10'],
             numberSelection: ['1'],
             fieldOptions: allDefaults.fieldOptions,
@@ -92,8 +93,8 @@ export default class extends React.Component {
         this.handleDateSelection = this.handleDateSelection.bind(this);
     }
 
-    handleTemplateSelection(e) {
-        this.setState({ templateSelection: [e.target.value] });
+    handleTemplateSelection(e, i, v) {
+        this.setState({ templateSelection: v });
     }
 
     handleNumberSelection(e) {
@@ -223,13 +224,17 @@ export default class extends React.Component {
         return (
             <div>
             <form onSubmit={this.handleFormSubmit}>
-                <CheckBoxOrRadioGroup
-                    title={'Which layout template?'}
-                    setName={'template'}
-                    controlFunc={this.handleTemplateSelection}
-                    type={'radio'}
-                    options={this.state.templateOptions}
-                    selectedOptions={this.state.templateSelection} />
+                <SelectField
+                    labelStyle={{ color: 'gray' }}
+                    floatingLabelText={"Which layout template?"}
+                    value={this.state.templateSelection}
+                    onChange={this.handleTemplateSelection}
+                >
+                    <MenuItem value={1} primaryText="2.63 x 1 (in)" />
+                    <MenuItem value={2} primaryText="3 x 2 (in)" />
+                    <MenuItem value={3} primaryText="3.5 x 2.5 (in)" />
+                    <MenuItem value={4} primaryText="3 x 3 (in)" />
+                </SelectField>
                 <CheckBoxOrRadioGroup
                     title={'How many labels?'}
                     setName={'number'}

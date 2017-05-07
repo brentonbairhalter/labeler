@@ -14,6 +14,25 @@ body {
     outline: 1px dotted; /* outline doesn't occupy space like border does */
     font-size: .4em;
 }
+
+.label-wrapper.template-2 {
+    width: 2.725in;
+    height: 1.725in;
+    padding: .125in;
+}
+
+.label-wrapper.template-3 {
+    width: 3.225in;
+    height: 2.225in;
+    padding: .125in;
+}
+
+.label-wrapper.template-4 {
+    width: 2.725in;
+    height: 2.725in;
+    padding: .125in;
+}
+
 .page-break  {
     clear: left;
     display:block;
