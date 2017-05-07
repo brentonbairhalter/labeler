@@ -10,7 +10,7 @@ body {
     padding: .125in .3in 0;
     margin-right: .125in;
     float: left;
-    /*overflow: hidden;*/
+    overflow: hidden;
     outline: 1px dotted; /* outline doesn't occupy space like border does */
     font-size: .4em;
 }
@@ -40,7 +40,7 @@ body {
 .label-wrapper div.col:first-of-type {text-align: left;}
 
 
-.label-wrapper span.item, #elr_preview_stage span.items{margin: auto .2em; display: inline; float:none;}
+.label-wrapper span.item, #elr_preview_stage span.items{margin: auto .2em; display: inline; float:none; text-overflow: ellipsis;  }
 .label-wrapper span.item:after {content:"\000A"; white-space: pre;}
 
 /* Random */
@@ -56,4 +56,22 @@ body {
 }
 .label-wrapper .meta.prev-user {
     border-right: 0;
+}
+
+.label-wrapper .flavor.row {
+    float: left;
+    width: 100%;
+}
+
+.label-wrapper .flavor.row .heading {
+    display: none;
+}
+
+.label-wrapper .flavor.row .item {
+    float: left;
+    margin: 0
+}
+
+.label-wrapper .flavor.row .item:not(:last-child):after {
+    content:", ";
 }

@@ -3,6 +3,11 @@ body {
 }
 
 #app-container { width: 500px;}
+#app-container .logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
 /* Form Region */
 .sub-fields { margin-left: 3em; }
@@ -38,7 +43,25 @@ body {
 
 
 #elr_preview_stage span.item, #elr_preview_stage span.items{margin: auto .2em; display: inline; float:none;}
-#elr_preview_stage span.item:after {content:"\000A"; white-space: pre;}
+#elr_preview_stage span.item:after, #elr_preview_stage span.heading:after {content:"\000A"; white-space: pre;}
+
+#elr_preview_stage .flavor.row {
+    float: left;
+    width: 100%;
+}
+
+#elr_preview_stage .flavor.row .heading {
+    display: none;
+}
+
+#elr_preview_stage .flavor.row .item {
+    float: left;
+    margin: 0
+}
+
+#elr_preview_stage .flavor.row .item:not(:last-child):after {
+    content:", ";
+}
 
 /* Random */
 #app-container .show {display: block;}

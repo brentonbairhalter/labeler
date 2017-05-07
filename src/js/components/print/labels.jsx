@@ -17,12 +17,12 @@ export default class extends React.Component {
     }
 
     render() {
-        let labelCount = this.props.count || 3,
+        let labelCount =  3,
             labelBoxes = [];
 
-
-        for (let i = 1; i <= labelCount; i++) {
-            if (_.has(this.props, 'selections.selectedFields') && _.has(this.props, 'available')) {
+        if (_.has(this.props, 'selections.selectedFields') && _.has(this.props, 'available')) {
+            let labelCount = this.props.selections.numberSelection;
+            for (let i = 1; i <= labelCount; i++) {
                 labelBoxes.push(
                     <div className="label-wrapper" key={i + 'label'}>
                         <div className={'meta prev-title ' + this.showOrHide('title')}>{this.props.available.title}</div>
@@ -36,7 +36,7 @@ export default class extends React.Component {
                     </div>
                 );
             };
-        };
+        }
 
         return (
             <div id="elr_labels" className={'selected-template'}>

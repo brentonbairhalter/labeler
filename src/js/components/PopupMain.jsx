@@ -40,6 +40,9 @@ export default class extends React.Component {
             <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
                 <div>
                     <h1>E-Liquid Labeler</h1>
+                    <div className="logo">
+                        <img src="images/icon.png"/>
+                    </div>
                     <FormContainer title={this.state.data.title} user={this.state.data.user} nic={this.state.data.nic} base={this.state.data.base} pg={this.state.data.pg} vg={this.state.data.vg} flavors={this.state.data.flavors} date={this.state.data.date}/>
                 </div>
             </MuiThemeProvider>

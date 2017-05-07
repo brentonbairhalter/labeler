@@ -35,6 +35,8 @@ export default class extends React.Component {
         this.state = {
             templateOptions: [],
             templateSelection: [],
+            numberOptions: [],
+            numberSelection: [],
             fieldOptions: [],
             selectedFields: [],
             allFieldsOptions: [],
@@ -59,6 +61,8 @@ export default class extends React.Component {
         this.setState({
             templateOptions: ['one', 'two', 'three'],
             templateSelection: ['one'],
+            numberOptions: ['1', '3', '5', '10'],
+            numberSelection: ['1'],
             fieldOptions: allDefaults.fieldOptions,
             selectedFields: allDefaults.fieldOptions,
             allFieldsOptions: ['all', 'select'],
@@ -72,11 +76,12 @@ export default class extends React.Component {
             vgOptions: allDefaults.vgOptions,
             vgSelection: allDefaults.vgOptions,
             flavorOptions: allDefaults.flavorOptions,
-            flavorSelection: allDefaults.flavorOptions,
+            flavorSelection: ['flavor'],
             genDate: true
         });
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleTemplateSelection = this.handleTemplateSelection.bind(this);
+        this.handleNumberSelection = this.handleNumberSelection.bind(this);
         this.handleFieldSelection = this.handleFieldSelection.bind(this);
         this.handleAllFields = this.handleAllFields.bind(this);
         this.handleBaseSelection = this.handleBaseSelection.bind(this);
@@ -89,6 +94,10 @@ export default class extends React.Component {
 
     handleTemplateSelection(e) {
         this.setState({ templateSelection: [e.target.value] });
+    }
+
+    handleNumberSelection(e) {
+        this.setState({ numberSelection: [e.target.value] });
     }
 
     handleFieldSelection(e) {
@@ -192,6 +201,7 @@ export default class extends React.Component {
         const formPayload = {
             selections: {
                 templateSelection: this.state.templateSelection,
+                numberSelection: this.state.numberSelection,
                 selectedFields: this.state.selectedFields,
                 templateSelection: this.state.templateSelection,
                 selectedFields: this.state.selectedFields,
@@ -220,6 +230,13 @@ export default class extends React.Component {
                     type={'radio'}
                     options={this.state.templateOptions}
                     selectedOptions={this.state.templateSelection} />
+                <CheckBoxOrRadioGroup
+                    title={'How many labels?'}
+                    setName={'number'}
+                    controlFunc={this.handleNumberSelection}
+                    type={'radio'}
+                    options={this.state.numberOptions}
+                    selectedOptions={this.state.numberSelection} />
                 <div className="group fields">
                     <h2>Fields</h2>
                     <CheckBoxOrRadioGroup
