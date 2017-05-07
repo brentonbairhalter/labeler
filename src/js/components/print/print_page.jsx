@@ -9,6 +9,7 @@ export default class extends React.Component {
         this.state = {data: {
             user: 'Hello',
             title: 'E-L-L',
+            date: '',
             nic: {},
             base: {},
             pg: {},
@@ -25,8 +26,7 @@ export default class extends React.Component {
             });
             port.postMessage("printLabels");
             port.onMessage.addListener(function (data) {
-                console.log('DATA!!! ', data);
-                that.setState({data})
+                that.setState({data: data.data})
             });
         });
     }
@@ -34,7 +34,7 @@ export default class extends React.Component {
     render() {
         return (
             <div>
-                <Labels selections="{}"/>
+                <Labels selections={this.state.data.selections} available={this.state.data.available}/>
             </div>
         );
     }

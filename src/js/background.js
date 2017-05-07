@@ -21,7 +21,6 @@ chrome.runtime.onConnect.addListener(function(port) {
 chrome.runtime.onMessage.addListener( function(msg, sender, sendResponse){
     if(msg.action === 'print') {
         printData = msg;
-        console.log(document, msg.data);
         chrome.tabs.create(
             { url: chrome.runtime.getURL("print.html") }
         );

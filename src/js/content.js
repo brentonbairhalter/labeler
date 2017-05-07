@@ -37,9 +37,19 @@ function getRecipeData() {
         return holder;
     }
 
+   function getGenDate() {
+        const   currentDate = new Date(),
+            day = currentDate.getDate(),
+            month = currentDate.getMonth() + 1,
+            year = currentDate.getFullYear();
+
+        return (month + "/" +  day + "/" + year);
+    }
+
     return {
         user: document.getElementById('byuser').getElementsByTagName('a')[0].innerHTML,
         title: document.getElementById('rname').innerHTML,
+        date: getGenDate(),
         nic: {
             label: 'Nicotine',
             mg: document.getElementById('rnstr').innerHTML,

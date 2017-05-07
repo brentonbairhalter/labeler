@@ -3,6 +3,10 @@ import { render } from "react-dom";
 import _ from "lodash";
 
 import CheckBoxOrRadioGroup from "./checkBoxOrRadioGroup.jsx";
+import RaisedButton from 'material-ui/RaisedButton';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 
 // Preview Region Components
 import BaseRow from "../baseRow.jsx";
@@ -183,17 +187,8 @@ export default class extends React.Component {
         });
     }
 
-    getDate() {
-        const   currentDate = new Date(),
-                day = currentDate.getDate(),
-                month = currentDate.getMonth() + 1,
-                year = currentDate.getFullYear();
-        return(month + "/" +  day + "/" + year)
-    }
-
     handleFormSubmit(e) {
         e.preventDefault();
-
         const formPayload = {
             selections: {
                 templateSelection: this.state.templateSelection,
@@ -205,8 +200,7 @@ export default class extends React.Component {
                 pgSelection: this.state.pgSelection,
                 vgSelection: this.state.vgSelection,
                 flavorSelection: this.state.flavorSelection,
-                genDate: this.state.genDate,
-                date: this.getDate()
+                dateSelection: this.state.genDate
             },
             available: this.props
         };
@@ -287,12 +281,12 @@ export default class extends React.Component {
                             selectedOptions={this.state.flavorSelection} />
                     </div>
                 </div>
-                <input type="submit" value="Submit"/>
+                <RaisedButton type="submit" label="Print Labels" fullWidth={true}/>
             </form>
             <div id="elr_preview">
                 <div id="elr_preview_stage" className={this.state.templateSelection}>
                     <div className={'prev-title ' + this.showSelectedField('title')}><span>Title</span> {this.props.title}</div>
-                    <div className={'prev-date ' + this.showSelectedField('date')}><span>Date</span> {this.getDate()}</div>
+                    <div className={'prev-date ' + this.showSelectedField('date')}><span>Date</span> {this.props.date}</div>
                     <div className={'prev-user ' +  this.showSelectedField('user')}><span>User</span> {this.props.user}</div>
                     <NicRow nic={this.props.nic} show={this.showSelectedField('nic')} selections={this.state.nicSelection}/>
                     <BaseRow base={this.props.base} show={this.showSelectedField('base')} selections={this.state.baseSelection}/>

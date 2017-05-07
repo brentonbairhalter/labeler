@@ -3,16 +3,16 @@ body {
     margin: 0in .1875in;
 }
 
-.label{
-    /* Avery 5160 labels -- CSS and HTML by MM at Boulder Information Services */
+.label-wrapper{
+    /* Avery 5160 labels */
     width: 2.025in;
     height: .875in;
     padding: .125in .3in 0;
     margin-right: .125in;
     float: left;
-    text-align: center;
-    overflow: hidden;
+    /*overflow: hidden;*/
     outline: 1px dotted; /* outline doesn't occupy space like border does */
+    font-size: .4em;
 }
 .page-break  {
     clear: left;
@@ -20,4 +20,8 @@ body {
     page-break-after:always;
 }
 
-#print-container { width: 500px; }
+/* Label Styles */
+.label-wrapper .heading {
+    font-weight: bold;
+    margin-right: .6em
+}

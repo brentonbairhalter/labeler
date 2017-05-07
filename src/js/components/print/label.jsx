@@ -1,27 +1,65 @@
 import React from "react";
 import _ from "lodash";
 
+import FlavorRows from "../flavorRows.jsx";
+
 
 export default class extends React.Component {
-    render() {
-        let sels = this.props.selections;
 
-        _.each(this.props.flavors, function(n, i) {
-            labels.push(
-                <div key={i} className={'col ' + i + ' ' + show}><span className="heading">{i}</span><br/><FlavorItem item={n}/></div>
-            )
-        });
+    render() {
+        let label = [];
+        if (this.props.fields) {
+            console.log('labelsss: ', typeof this.props.fields);
+
+            _.each(this.props.fields, (n, i)=> {
+                let labelRows = [];
+                // console.log('making label', n);
+
+                _.each(n, function(k, v) {
+                    console.log('in the label: ', k);
+                    let labelFields = [];
+                    let labelVals = [];
+
+                    _.each(k, (it, vl)=> {
+                        console.log('in the field', it.item, it.values.length);
+
+                        if (_.isObject(it.values)) {
+                            _.each(it.values, (v, ct)=> {
+                                console.log('in the vals', v, ct);
+
+                                labelVals.push(
+                                    <span key={v + ct + v}>{v}</span>
+                                );
+                            });
+                        } else {
+                            labelVals.push(
+                                <span key={v + vl + v}>{it.values}</span>
+                            );
+                        }
+
+                        labelFields.push(
+                            <span key={vl + v + i}>{it.item} {labelVals}</span>
+                        );
+
+                    });
+
+                    labelRows.push(
+                        <div key={i + v} className={'label-row '}>{k[0].field} {labelFields}</div>
+                    );
+                });
+
+                label.push(
+                    <div key={i} className="label-wrapper">
+                        {labelRows}
+                    </div>
+                )
+            });
+        }
 
         return (
-            <div id="elr_labels" className={this.state.templateSelection}>
-                <div className={'-title ' + this.showSelectedField('title')}><span>Title</span> {this.props.title}</div>
-                {/*<div className={'prev-date ' + this.showSelectedField('date')}><span>Date</span> {this.getDate()}</div>*/}
-                {/*<div className={'prev-user ' +  this.showSelectedField('user')}><span>User</span> {this.props.user}</div>*/}
-                {/*<NicRow nic={this.props.nic} show={this.showSelectedField('nic')} selections={this.state.nicSelection}/>*/}
-                {/*<BaseRow base={this.props.base} show={this.showSelectedField('base')} selections={this.state.baseSelection}/>*/}
-                {/*<PGRow pg={this.props.pg} show={this.showSelectedField('pg')} selections={this.state.pgSelection}/>*/}
-                {/*<VGRow vg={this.props.vg} show={this.showSelectedField('vg')} selections={this.state.vgSelection}/>*/}
-                {/*<FlavorRows flavors={this.props.flavors} show={this.showSelectedField('flavors')} selections={this.state.flavorSelection}/>*/}
-            </div>        );
+            <div>
+                {label}
+            </div>
+        );
     }
 };

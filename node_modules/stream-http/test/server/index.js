@@ -37,8 +37,11 @@ app.get('/testHeaders', function (req, res) {
 	var reqHeaders = {}
 	Object.keys(req.headers).forEach(function (key) {
 		key = key.toLowerCase()
-		if (key.indexOf('test-') === 0)
-			reqHeaders[key] = req.headers[key]
+		if (key.indexOf('test-') === 0) {
+			// different browsers format request headers with multiple values
+			// slightly differently, so normalize
+			reqHeaders[key] = req.headers[key].replace(', ', ',')
+		}
 	})
 
 	var body = JSON.stringify(reqHeaders)
@@ -69,6 +72,24 @@ app.get('/auth', function (req, res) {
 app.post('/echo', function (req, res) {
 	res.setHeader('Content-Type', 'application/octet-stream')
 	req.pipe(res)
+})
+
+app.use('/verifyEmpty', function (req, res) {
+	var empty = true
+	req.on('data', function (buf) {
+		if (buf.length > 0) {
+			empty = false
+		}
+	})
+	req.on('end', function () {
+		res.setHeader('Content-Type', 'text/plain')
+
+		if (empty) {
+			res.end('empty')
+		} else {
+			res.end('not empty')
+		}
+	})
 })
 
 app.use(function (req, res, next) {
