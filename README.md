@@ -1,3 +1,8 @@
+# E-Liquid Labeler
+A chrome extension to make labels from your recipes.  Customize the data fields and layout for printing labels.
+
+https://chrome.google.com/webstore/detail/e-liquid-labeler/ggmekpebadjkfgbbghhpbibinelpfphi
+
 # Chrome Extension Webpack Boilerplate
 
 A basic foundation boilerplate for rich Chrome Extensions using [Webpack](https://webpack.github.io/) to help you write modular and modern Javascript code, load CSS easily and [automatic reload the browser on code changes](https://webpack.github.io/docs/webpack-dev-server.html#automatic-refresh).
